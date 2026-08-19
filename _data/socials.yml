@@ -1,0 +1,7 @@
+# this file contains the social media links and usernames of the author
+# the socials will be displayed in the order they are defined here
+# for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
+email: k.mueller23@imperial.ac.uk # your email address
+github_username: konmue # your GitHub username
+scholar_userid: rz2ChBIAAAAJ # your Google Scholar ID
+linkedin_username: konrad-mueller # your LinkedIn handle (only the slug after linkedin.com/in/)
