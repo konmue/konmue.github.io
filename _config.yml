@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: "Konrad Mueller — Imperial College London"
+title: blank # the website title (if blank, full name will be used instead)
 first_name: Konrad
 middle_name: Jakob
 last_name: Mueller
