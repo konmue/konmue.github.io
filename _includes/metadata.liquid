@@ -226,20 +226,42 @@
     {% endcase %}
   {% endfor %}
 
-  <script type="application/ld+json">
-    {
-        "author":
-        {
-            "@type": "Person",
-            "name": "{{ author_name }}"{% if sameaslinks != blank %},
-            "sameAs": {{ sameaslinks | jsonify }}{% endif %}
-        },
-        "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-        "@type": "{% if is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
-        "description": "{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% endif %}",
-        "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
-        "name": "{{ author_name }}",
-        "@context": "https://schema.org"
-    }
-  </script>
+  {% if page.url == '/' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": {{ page.url | prepend: site.baseurl | prepend: site.url | jsonify }},
+        "mainEntity": {
+          "@type": "Person",
+          "name": {{ author_name | jsonify }},
+          "alternateName": ["Konrad Müller", "Konrad Mueller", "Konrad J. Mueller", "Konrad Jakob Mueller"],
+          "url": {{ page.url | prepend: site.baseurl | prepend: site.url | jsonify }},
+          "jobTitle": "PhD Student",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Imperial College London"
+          },
+          "sameAs": {{ sameaslinks | jsonify }}
+        }
+      }
+    </script>
+  {% else %}
+    <script type="application/ld+json">
+      {
+          "author":
+          {
+              "@type": "Person",
+              "name": "{{ author_name }}"{% if sameaslinks != blank %},
+              "sameAs": {{ sameaslinks | jsonify }}{% endif %}
+          },
+          "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
+          "@type": "{% if is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
+          "description": "{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% endif %}",
+          "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
+          "name": "{{ author_name }}",
+          "@context": "https://schema.org"
+      }
+    </script>
+  {% endif %}
 {% endif %}
